@@ -1,0 +1,25 @@
+name: .NET Restore
+description: An opinionated action that only restores the dependencies of a project. Default is to restore all C# projects.
+inputs:
+  projects:
+    description: Optional path to the project(s) file to restore. Pass empty to restore all dependencies and tools of a solution. Supports globbing.
+    required: true
+    default: '**/*.csproj'
+  level:
+    description: Sets the verbosity level of the command. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic]. The default is quiet.
+    required: true
+    default: 'quiet'
+runs:
+  using: composite
+  steps:
+    - run: |
+        if [ ${{ inputs.projects }} == "" ]; then
+            dotnet restore --verbosity ${{ inputs.level }}
+        else
+            shopt -s globstar
+            for file in ${{ inputs.projects }}; do
+              dotnet restore $file --verbosity ${{ inputs.level }}
+              echo "Restored '$file'"
+            done
+        fi
+      shell: bash
