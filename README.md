@@ -2,7 +2,7 @@
 
 This action uses the .NET CLI `dotnet restore` command including a select few options tied to [dotnet restore](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-restore) otherwise pre-configured specifically for the Codebelt methodology.
 
-Supports `projects` input we learned to appreciate from [AzDO DotNetCoreCLI](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/dotnet-core-cli-v2?view=azure-pipelines) 
+Supports `projects` input we learned to appreciate from [AzDO DotNetCoreCLI](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/dotnet-core-cli-v2?view=azure-pipelines).
 
 This ensures a smooth and consistent way to setup your CI/CD pipeline as well as structuring your repository.
 
