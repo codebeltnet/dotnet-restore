@@ -1,6 +1,6 @@
 # .NET Restore
 
-Uses the .NET CLI `dotnet restore` [command]((https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-restore)) to restore the dependencies for projects or the solution itself.
+Uses the .NET CLI `dotnet restore` [command]((https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-restore)) to restore the dependencies for specified projects or the solution itself.
 
 Supports `projects` input we learned to appreciate from [AzDO DotNetCoreCLI](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/dotnet-core-cli-v2?view=azure-pipelines).
 

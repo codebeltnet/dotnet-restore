@@ -1,5 +1,5 @@
 name: .NET Restore
-description: An opinionated action that restore the dependencies for projects or the solution itself. Default is to restore all C# projects.
+description: An opinionated action that restore the dependencies for specified projects or the solution itself. Default is to restore all C# projects.
 inputs:
   projects:
     description: Optional path to the project(s) file to restore. Pass empty to restore all dependencies and tools of a solution. Supports globbing.
