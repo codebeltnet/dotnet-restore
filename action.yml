@@ -13,7 +13,7 @@ runs:
   using: composite
   steps:
     - run: |
-        if [ ${{ inputs.projects }} == "" ]; then
+        if [ "${{ inputs.projects }}" == "" ]; then
             dotnet restore --verbosity ${{ inputs.level }}
         else
             shopt -s globstar
