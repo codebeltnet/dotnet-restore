@@ -10,19 +10,29 @@ inputs:
     required: true
     default: 'quiet'
   useRestoreCache:
-    description: Whether to use the restore cache or not. Default is to use the restore cache.
+    description: Whether to use the restore cache or not. Default is not to use the restore cache.
     required: false
     default: 'false'
+outputs:
+  restoreCacheKey:
+    description: The restore cache key that can be used by other actions.
+    value: ${{ steps.generate-restore-cache-key.outputs.key }}
 runs:
   using: composite
   steps:
+    - if: inputs.useRestoreCache == 'true'
+      id: generate-restore-cache-key
+      run: |
+        key=dotnet-restore-${{ hashFiles('**/*.csproj') }}
+        echo "key=$key" >> $GITHUB_OUTPUT
+      shell: bash
     - if: inputs.useRestoreCache == 'true'
       name: Cache Files
       id: cache-dotnet-restore
       uses: actions/cache@v4
       with:
-        path: ${{ github.workspace }}/src
-        key: dotnet-restore-${{ hashFiles('**/*.csproj') }}
+        path: ${{ github.workspace }}
+        key: ${{ steps.generate-restore-cache-key.outputs.key }}
         enableCrossOsArchive: true
     - if: inputs.useRestoreCache == 'false' || steps.cache-dotnet-restore.outputs.cache-hit != 'true'
       name: Restore

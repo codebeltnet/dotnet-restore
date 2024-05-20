@@ -15,6 +15,8 @@ Supports `projects` input we learned to appreciate from [AzDO DotNetCoreCLI](htt
 >
 > A paved path to excel as a DevSecOps Engineer.
 
+See also: [dotnet-restore](https://github.com/codebeltnet/dotnet-restore)
+
 ## Usage
 
 To use this action in your GitHub repository, you can follow these steps:
@@ -33,14 +35,18 @@ with:
   # Sets the verbosity level of the command.
   # Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].
   level: 'quiet'
-  # Whether to use the restore cache or not. 
-  # The default is to not use restore cache (backward compatibility).
-  useRestoreCache: 'false'
+  # When set, current workspace will be overwritten with the content of the restore cache.
+  # Default is empty.
+  restoreCacheKey: ''
 ```
 
 ### Outputs
 
-This action has no outputs.
+```yaml
+outputs:
+  # The restore cache key that can be used by other actions.
+  restoreCacheKey: dotnet-restore-sha256
+```
 
 ## Examples
 
