@@ -31,7 +31,9 @@ runs:
       id: cache-dotnet-restore
       uses: actions/cache@v4
       with:
-        path: ${{ github.workspace }}
+        path: |
+          ${{ github.workspace }}
+          ~/.nuget/packages
         key: ${{ steps.generate-restore-cache-key.outputs.key }}
         enableCrossOsArchive: true
     - if: inputs.useRestoreCache == 'false' || steps.cache-dotnet-restore.outputs.cache-hit != 'true'
