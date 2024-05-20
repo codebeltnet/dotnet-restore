@@ -22,7 +22,7 @@ See also: [dotnet-restore](https://github.com/codebeltnet/dotnet-restore)
 To use this action in your GitHub repository, you can follow these steps:
 
 ```yaml
-uses: codebeltnet/dotnet-restore@v1
+uses: codebeltnet/dotnet-restore@v2
 ```
 
 ### Inputs
@@ -55,7 +55,7 @@ outputs:
 ```yaml
 steps:
   - name: Restore Dependencies
-    uses: codebeltnet/dotnet-restore@v1
+    uses: codebeltnet/dotnet-restore@v2
 ```
 
 ### Sample workflow for .NET Class Library
@@ -111,7 +111,7 @@ jobs:
           objectName: strongname.snk
 
       - name: Restore Dependencies
-        uses: codebeltnet/dotnet-restore@v1
+        uses: codebeltnet/dotnet-restore@v2
 
       - name: Build for Preview
         uses: codebeltnet/dotnet-build@v1
