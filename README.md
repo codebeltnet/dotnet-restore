@@ -30,10 +30,12 @@ with:
   # Optional path to the project(s) file to restore. Pass empty to restore all dependencies and tools of a solution. 
   # Supports globbing.
   projects: '**/*.csproj'
-
   # Sets the verbosity level of the command.
   # Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].
   level: 'quiet'
+  # Whether to use the restore cache or not. 
+  # The default is to not use restore cache (backward compatibility).
+  useRestoreCache: 'false'
 ```
 
 ### Outputs

@@ -9,10 +9,23 @@ inputs:
     description: Sets the verbosity level of the command. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic]. The default is quiet.
     required: true
     default: 'quiet'
+  useRestoreCache:
+    description: Whether to use the restore cache or not. Default is to use the restore cache.
+    required: false
+    default: 'false'
 runs:
   using: composite
   steps:
-    - run: |
+    - if: inputs.useRestoreCache == 'true'
+      name: Cache Files
+      id: cache-dotnet-restore
+      uses: actions/cache@v4
+      with:
+        key: dotnet-restore-${{ hashFiles('**/*.csproj') }}
+        enableCrossOsArchive: true
+    - if: inputs.useRestoreCache == 'false' || steps.cache-dotnet-restore.outputs.cache-hit != 'true'
+      name: Restore
+      run: |
         if [ "${{ inputs.projects }}" == "" ]; then
             dotnet restore --verbosity ${{ inputs.level }}
         else
