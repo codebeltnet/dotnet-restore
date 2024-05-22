@@ -23,7 +23,7 @@ runs:
     - if: inputs.useRestoreCache == 'true'
       id: generate-restore-cache-key
       run: |
-        key=dotnet-restore-${{ hashFiles('**/*.csproj') }}
+        key=dotnet-restore-${{ hashFiles(inputs.projects) }}
         echo "key=$key" >> $GITHUB_OUTPUT
       shell: bash
     - if: inputs.useRestoreCache == 'true'
