@@ -35,6 +35,8 @@ runs:
           ${{ github.workspace }}
           ~/.nuget/packages
         key: ${{ steps.generate-restore-cache-key.outputs.key }}
+        restore-keys: |
+          dotnet-restore-
         enableCrossOsArchive: true
     - if: inputs.useRestoreCache == 'false' || steps.cache-dotnet-restore.outputs.cache-hit != 'true'
       name: Restore
