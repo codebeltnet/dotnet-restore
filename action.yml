@@ -34,6 +34,9 @@ runs:
         path: |
           ${{ github.workspace }}/src
           ${{ github.workspace }}/test
+          ${{ github.workspace }}/*.sln
+          ${{ github.workspace }}/*.props
+          ${{ github.workspace }}/*.targets
           ~/.nuget/packages
         key: ${{ steps.generate-restore-cache-key.outputs.key }}
         restore-keys: |
