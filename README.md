@@ -35,8 +35,9 @@ with:
   # Sets the verbosity level of the command.
   # Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].
   level: 'quiet'
-  # When set, current workspace will be overwritten with the content of the restore cache.
-  # Default is empty.
+  # Whether to use the default restore cache ('**/*.csproj', '**/*.cs') or not. Default is not to use the restore cache.
+  useRestoreCache: 'false'
+  # Allows for a custom provided key that will be used instead of the default implementation.
   restoreCacheKey: ''
 ```
 

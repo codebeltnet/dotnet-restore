@@ -13,6 +13,10 @@ inputs:
     description: Whether to use the restore cache or not. Default is not to use the restore cache.
     required: false
     default: 'false'
+  restoreCacheKey:
+    description: Allows for a custom provided key that will be used instead of the default implementation.
+    required: false
+    default: ''
 outputs:
   restoreCacheKey:
     description: The restore cache key that can be used by other actions.
@@ -23,7 +27,7 @@ runs:
     - if: inputs.useRestoreCache == 'true'
       id: generate-restore-cache-key
       run: |
-        key=dotnet-restore-${{ hashFiles(inputs.projects) }}
+        key=dotnet-restore-${{ inputs.useRestoreCache == 'false' && hashFiles('**/*.csproj', '**/*.cs') || inputs.restoreCacheKey }}
         echo "key=$key" >> $GITHUB_OUTPUT
       shell: bash
     - if: inputs.useRestoreCache == 'true'
