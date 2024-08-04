@@ -29,7 +29,10 @@ runs:
       run: |
         sanitizedKey=${{ inputs.restoreCacheKey }}
         sanitizedKey=${sanitizedKey/dotnet-restore-/}  # Remove "dotnet-restore-" if it exists
-        key=dotnet-restore-${{ sanitizedKey == '' && hashFiles('**/*.csproj', '**/*.cs') || sanitizedKey }}
+        key=dotnet-restore-${sanitizedKey}
+        if [ "$sanitizedKey" == "" ]; then
+          key=dotnet-restore-${{ hashFiles('**/*.csproj', '**/*.cs') }}
+        fi
         echo "key=$key" >> $GITHUB_OUTPUT
       shell: bash
     - if: inputs.useRestoreCache == 'true'
