@@ -21,7 +21,7 @@ runs:
         if [ "${{ inputs.projects }}" == "" ]; then
             dotnet restore --verbosity ${{ inputs.verbosity-level }}
         else
-            shopt -s globstar extglob
+            shopt -s globstar extglob 2>/dev/null || true
             for file in ${{ inputs.projects }}; do
               dotnet restore $file --verbosity ${{ inputs.verbosity-level }}
               echo "Restored '$file'"
